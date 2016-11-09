@@ -3,3 +3,4 @@
 ./routes
 ./views
 ./*~
+./.gitgnore
