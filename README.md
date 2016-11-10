@@ -202,8 +202,26 @@ And we use this query:
 select time, value from sparksensordata.sensordata
 </pre>
 
-
 #Test ReST Interfaces
+The rest interfaces are served from routes defined in app.js e.g.
+<pre>
+app.get('/compaction', function(req, res) {
+  var client = new cassandra.Client({ contactPoints: ['localhost'] , keyspace: 'system'});
+  var queryString = 'select keyspace_name, columnfamily_name, compacted_at, bytes_in, bytes_out from system.compaction_history';
+  client.execute(queryString, function(err, result) 
+  {
+    if (err) throw err;
+    for (var item in result.rows) {
+      console.log(result.rows[item]);
+    }
+    res.setHeader('Content-Type', 'application/json');
+    jsonString=JSON.stringify(result.rows);
+    console.log('JSON = ',jsonString);
+    res.send(JSON.stringify(result.rows));
+  });
+});
+</pre>
+
 Now we know where everything is and what we're looking for, let's test it.
 If the server isn't currently running, go to your project directory and run this command to start the node server:
 <pre>
@@ -211,20 +229,22 @@ DEBUG=chartdse:* npm start
 </pre>
 
 ##Compaction History
-Test the system.compaction_history interface:
+Test the system.compaction_history interface - json data is returned:
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png)
 
 ##Sensor Data
-Test the custom sparksensordata.sensordata interface:
+Test the custom sparksensordata.sensordata interface - json data is returned:
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png)
 
 #Test The Chart Pages
+These are HTML pages that call the ReST interfaces and contain scripts to build d3 charts to display the data. These are in ./public
 
 ##Simple d3 Chart
+This contains a simple demo to build a bar chart, plus links to the ReST interfaces for the two tables. THere is also a button showing how to link to another static HTML psge.
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/chart_html.png)
 
 ##Time Series Data
-Test the simple time series data chart:
+This takes the sensor data in the sparksensordata.sensordata table and displays it in a time series line graph.
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
 
 
