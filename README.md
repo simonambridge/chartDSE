@@ -207,7 +207,9 @@ Test the system.compaction_history interface:
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png)
 
 Test the custom sparksensordata.sensordata interface:
-![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata_html.png)
+![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png)
 
+Test the simple time series data chart:
+![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
 
 
