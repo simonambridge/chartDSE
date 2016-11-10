@@ -201,8 +201,9 @@ And we use this query:
 <pre>
 select time, value from sparksensordata.sensordata
 </pre>
+<BR>
 
-#Test ReST Interfaces
+#Test The ReST Interfaces
 The rest interfaces are served from routes defined in app.js e.g.
 <pre>
 app.get('/compaction', function(req, res) {
@@ -239,6 +240,7 @@ Test the custom sparksensordata.sensordata interface - json data is returned:
 <BR>
 <BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png)
+<BR>
 
 #Test The Chart Pages
 These are HTML pages that call the ReST interfaces and contain scripts to build d3 charts to display the data. These are in ./public
