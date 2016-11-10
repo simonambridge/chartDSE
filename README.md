@@ -76,9 +76,8 @@ if no start script is in package .json it will default to this server.js
 
 See also http://expressjs.com/en/starter/basic-routing.html
 
-===========================================
-
-Now create a proper node application:
+#Build The chartDSE Application
+Now let's create a proper node application.
 
 From a parent directory create a new project and directory:
 <pre>
@@ -142,12 +141,12 @@ Express
 
 Welcome to Express
 </pre>
-Our Express app is now up and running
+Our Express app is now up and running!
 
 ##Important Files
 - app.js - defines the environment - server, port, paths etc. maps the /public directory for static content, defines the paths to the ReST interfaces and the Cassandra query code.
--- the app.js 'start' element points to "./bin/www"
-- Port 3000 is defined in <project_dir>/bin/www - starts the http server
+-- package.json contains the 'start script' element pointing to "./bin/www"
+- ./bin/www" - starts the http server
 - If an index.html file is in ./public then it will display that as the entry point e.g. http://localhost:3000 
 - If not then it will use index.jade  in /views and display the Express welcome message
 - ./public/chart.html - a simple d3 example and buttons to test the ReST interfaces for the two table queries
@@ -198,7 +197,13 @@ And we use this query:
 select time, value from sparksensordata.sensordata
 </pre>
 
+
 #Test ReST Interfaces
+Now we know where everything is and what we're looking for, let's test it.
+If the server isn't currently running, go to your project directory and run this command to start the node server:
+<pre>
+DEBUG=chartdse:* npm start           
+</pre>
 
 ##Compaction History
 Test the system.compaction_history interface:
