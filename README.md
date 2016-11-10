@@ -198,10 +198,16 @@ And we use this query:
 select time, value from sparksensordata.sensordata
 </pre>
 
+#Test The Chart Pages
+![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/chart_html.png)
+
 #Test ReST Interfaces
 
 Test the system.compaction_history interface:
+![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png)
 
 Test the custom sparksensordata.sensordata interface:
+![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata_html.png)
+
 
 
