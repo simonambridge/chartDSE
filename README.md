@@ -149,7 +149,7 @@ Our Express app is now up and running!
 - ./bin/www" - starts the http server
 - If an index.html file is in ./public then it will display that as the entry point e.g. http://localhost:3000 
 - If not then it will use index.jade  in /views and display the Express welcome message
-- ./public/chart.html - a simple d3 example and buttons to test the ReST interfaces for the two table queries
+- ./public/chart.html - a simple d3 example chart and buttons to test the ReST interfaces for the two table queries
 - ./public/simplechart.html - a simple dashboard that displays time-series data from the custom table - from ideas at https://github.com/ESeufert/d3.js-dashboard-examples
 
 ##Example Cassandra Nodejs code:
@@ -163,7 +163,6 @@ client.execute('select key from system.local', function(err, result) {
   console.log(result.rows[0]);
 });
 </pre>
-
 
 ##Data we will pull from Cassandra
 
