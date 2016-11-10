@@ -143,6 +143,12 @@ Welcome to Express
 </pre>
 Our Express app is now up and running!
 
+Now from the parent directory clone the repo contents into the project directory:
+<pre>
+$ git clone http://gitchub.com/simonambridge/chartDSE
+</pre>
+This will overlay the repo files into the directory structure created by Express.
+
 ##Important Files
 - app.js - defines the environment - server, port, paths etc. maps the /public directory for static content, defines the paths to the ReST interfaces and the Cassandra query code.
 -- package.json contains the 'start script' element pointing to "./bin/www"
