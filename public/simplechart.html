@@ -26,21 +26,23 @@
     return values[0];
   }
 
+    console.log("Starting SimpleChart...");
+
   var data = [];
   //d3.json('http://127.0.0.1:3000/list', function(data) {
 
-  d3.json('http://localhost:3000/list', function (jsonData) {
+  d3.json('http://localhost:3000/sensordata', function (jsonData) {
   console.log(jsonData);
   // Convert JSON String into Array
 
   var parseUTC = d3.time.format("%Y-%m-%dT%X.%LZ");
 
-  var data = []; // This will be the resulting array
+  var data = []; // This will be the resulting array built from the json response
   jsonRecCount=0;
   for(var key in jsonData) {
     var entry = jsonData[key]; // This will be the column values
     //entry.keyspace_name = key; // e.g. if you wanted to generate an index value for keyspace_name
-    //entry.compacted_at = parseUTC.parse(compacted_at);
+    //entry.time = parseUTC.parse(time);
 
     data.push(entry);
     jsonRecCount++;
@@ -56,19 +58,19 @@
 
   // parse UTC dates to convert e.g. 2016-10-21T08:56:59.921Z to Fri Oct 21 2016 08:56:59 GMT+0000
   for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
-    data[i].compacted_at = parseUTC.parse(data[i].compacted_at);
-    console.log("data[i].compacted_at = " + data[i].compacted_at);
+    data[i].time = parseUTC.parse(data[i].time);
+    console.log("data["+i+"].time = " + data[i].time);
   }
 
   // sort the data by date ascending
   data.sort( 
     function(a, b) {
-      return new Date(a.compacted_at) - new Date(b.compacted_at);
+      return new Date(a.time) - new Date(b.time);
     }
   );
 
   for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
-    console.log("Date = ",data[i].compacted_at);
+    console.log("Date = ",data[i].time);
   }
 
   // these are graph size settings
@@ -78,17 +80,18 @@
   var width = width - margin.left - margin.right;
   var height = height - margin.top - margin.bottom;     
 
-  var minDate = data[0].compacted_at; 
-  var maxDate = data[data.length-1].compacted_at;
+  // loaded data summary
+  var minDate = data[0].time; 
+  var maxDate = data[data.length-1].time;
 
   console.log("minDate =" + minDate);
   console.log("maxDate =" + maxDate);
 
-  minObjectValue = getMinObjectValue(data, 'bytes_out');
-  maxObjectValue = getMaxObjectValue(data, 'bytes_out');
+  minObjectValue = getMinObjectValue(data, 'value');
+  maxObjectValue = getMaxObjectValue(data, 'value');
 
-  console.log("min bytes out =" + minObjectValue);
-  console.log("max bytes out =" + maxObjectValue);
+  console.log("min value =" + minObjectValue);
+  console.log("max value =" + maxObjectValue);
 
 
   // =======================================================================
@@ -112,7 +115,7 @@
   var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
-        .tickFormat(d3.time.format("%H"));
+        .tickFormat(d3.time.format("%M"));
 
   vis.append("g")
         .attr("class", "axis")
@@ -137,11 +140,11 @@
         .attr("y", 6)
         .attr("dy", "-3.4em")
         .attr("transform", "rotate(-90)")
-        .text('Compaction History');
+        .text('Sensor Reading');
 
   var line = d3.svg.line()
-        .x(function(d) { return x(new Date(d.compacted_at)); })
-        .y(function(d) { return y(d.bytes_out); })
+        .x(function(d) { return x(new Date(d.time)); })
+        .y(function(d) { return y(d.value); })
 
   vis.append("svg:path")
         .attr("d", line(data))
@@ -158,8 +161,8 @@
             .append('svg:circle')
             .attr('class', 'dot')
             .attr('fill', function() { return "red"; })
-            .attr('cx', function(d) { return x(new Date(d.compacted_at)); })
-            .attr('cy', function(d) { return y(d.bytes_out); })
+            .attr('cx', function(d) { return x(new Date(d.time)); })
+            .attr('cy', function(d) { return y(d.value); })
             .attr('r', function() { return 3; })
             .on("mouseover", function(d) {
                   d3.select(this)

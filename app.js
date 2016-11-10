@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
-app.get('/list', function(req, res) {
+app.get('/compaction', function(req, res) {
   var client = new cassandra.Client({ contactPoints: ['localhost'] , keyspace: 'system'});
   var queryString = 'select keyspace_name, columnfamily_name, compacted_at, bytes_in, bytes_out from system.compaction_history';
   client.execute(queryString, function(err, result) 
@@ -40,6 +40,21 @@ app.get('/list', function(req, res) {
   });
 });
 
+app.get('/sensordata', function(req, res) {
+  var client = new cassandra.Client({ contactPoints: ['localhost'] , keyspace: 'sparksensordata'});
+  var queryString = 'select time, value from sparksensordata.sensordata';
+  client.execute(queryString, function(err, result) 
+  {
+    if (err) throw err;
+    for (var item in result.rows) {
+      console.log(result.rows[item]);
+    }
+    res.setHeader('Content-Type', 'application/json');
+    jsonString=JSON.stringify(result.rows);
+    console.log('JSON = ',jsonString);
+    res.send(JSON.stringify(result.rows));
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
