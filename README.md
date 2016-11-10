@@ -231,10 +231,12 @@ DEBUG=chartdse:* npm start
 ##Compaction History
 Test the system.compaction_history interface - json data is returned:
 <BR>
+<BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png)
 
 ##Sensor Data
 Test the custom sparksensordata.sensordata interface - json data is returned:
+<BR>
 <BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png)
 
@@ -244,10 +246,12 @@ These are HTML pages that call the ReST interfaces and contain scripts to build 
 ##Simple d3 Chart
 This contains a simple demo to build a bar chart, plus links to the ReST interfaces for the two tables. There is also a button showing how to link to another static HTML page.
 <BR>
+<BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/chart_html.png)
 
 ##Time Series Data
 This takes the sensor data in the sparksensordata.sensordata table and displays it in a time series line graph.
+<BR>
 <BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
 
