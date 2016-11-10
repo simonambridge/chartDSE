@@ -129,7 +129,7 @@ Server process output:
 > node ./bin/www
   chartdse:server Listening on port 3000 +0ms
 
-GGET / 200 364.402 ms - 170
+GET / 200 364.402 ms - 170
 GET /stylesheets/style.css 200 5.804 ms - 111
 </pre>
 
@@ -197,5 +197,11 @@ And we use this query:
 <pre>
 select time, value from sparksensordata.sensordata
 </pre>
+
+#Test ReST Interfaces
+
+Test the system.compaction_history interface:
+
+Test the custom sparksensordata.sensordata interface:
 
 
