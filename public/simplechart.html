@@ -56,18 +56,16 @@
 
   // parse UTC dates to convert e.g. 2016-10-21T08:56:59.921Z to Fri Oct 21 2016 08:56:59 GMT+0000
   for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
-    var newDate = parseUTC.parse(data[i].compacted_at);
-    //console.log("newDate = " + newDate);
-    //console.log("Parse is = " +  parseUTC.parse(data[i].compacted_at));
-    data[i].compacted_at = newDate.toString();
-    //data[i].compacted_at = i;
-    //console.log("Date = ",data[i].compacted_at);
-    //console.log("it is = " + data[i].compacted_at + " and it should be >> " + parseUTC.parse(data[i].compacted_at));
-    //console.log("it is = " + data[i].compacted_at + " and it should be >> " + newDate);
+    data[i].compacted_at = parseUTC.parse(data[i].compacted_at);
+    console.log("data[i].compacted_at = " + data[i].compacted_at);
   }
 
   // sort the data by date ascending
-  data.sort((a, b) => a.compacted_at.localeCompare(b.compacted_at));
+  data.sort( 
+    function(a, b) {
+      return new Date(a.compacted_at) - new Date(b.compacted_at);
+    }
+  );
 
   for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
     console.log("Date = ",data[i].compacted_at);
@@ -95,7 +93,7 @@
 
   // =======================================================================
   //create the graph object
-  var vis= d3.select("#metrics").append("svg")
+  var vis = d3.select("#metrics").append("svg")
       .data(data)
       .attr("class", "metrics-container")
       .attr("width", width + margin.left + margin.right)
@@ -114,7 +112,7 @@
   var xAxis = d3.svg.axis()
         .scale(x)
         .orient("bottom")
-        .ticks(5);
+        .tickFormat(d3.time.format("%H"));
 
   vis.append("g")
         .attr("class", "axis")
@@ -142,14 +140,14 @@
         .text('Compaction History');
 
   var line = d3.svg.line()
-        .x(function(d) { return x(d["compacted_at"]); })
-        .y(function(d) { return y(d["bytes_out"]); })
+        .x(function(d) { return x(new Date(d.compacted_at)); })
+        .y(function(d) { return y(d.bytes_out); })
 
   vis.append("svg:path")
         .attr("d", line(data))
         .style("stroke", function() { 
             return "#000000";
-        })
+         })
         .style("fill", "none")
         .style("stroke-width", "2.5");
         var dataCirclesGroup = vis.append('svg:g');
@@ -160,8 +158,8 @@
             .append('svg:circle')
             .attr('class', 'dot')
             .attr('fill', function() { return "red"; })
-            .attr('cx', function(d) { return x(d["compacted_at"]); })
-            .attr('cy', function(d) { return y(d["bytes_out"]); })
+            .attr('cx', function(d) { return x(new Date(d.compacted_at)); })
+            .attr('cy', function(d) { return y(d.bytes_out); })
             .attr('r', function() { return 3; })
             .on("mouseover", function(d) {
                   d3.select(this)
