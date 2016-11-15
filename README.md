@@ -260,7 +260,9 @@ This takes the sensor data in the sparksensordata.sensordata table and displays 
 #Installing d3js Locally
 By default the d3 scripts are downloaded at runtime using a link at the top of the html page that will run your javascript (for example in simplechart.html) e.g.:
 
+<pre>
 <script src="http://d3js.org/d3.v2.js"></script>
+</pre>
 
 If you do not want to be dependent on an internet connection in order to run your code you can download d3 and use it locally.
 
