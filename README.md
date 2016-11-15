@@ -257,4 +257,30 @@ This takes the sensor data in the sparksensordata.sensordata table and displays 
 <BR>
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
 
+#Installing d3js Locally
+By default the d3 scripts are downloaded at runtime using a link at the top of the html page that will run your javascript (for example in simplechart.html) e.g.:
+
+<script src="http://d3js.org/d3.v2.js"></script>
+
+If you do not want to be dependent on an internet connection in order to run your code you can download d3 and use it locally.
+
+Follow these steps:
+
+Go to the d3 site at http://d3js.org 
+Create a directory in your project directory (or centrally if you want to share between projects).
+
+<pre>
+$ cd <my project directory>
+$ mkdir d3
+</pre>
+
+Download the d3js.zip zip file to the d3 dir created above.
+
+Edit your html file to reflect the new location of d3js e.g.: 
+<pre>
+<script src="./d3/d3.js"></script>
+</pre>
+
+That's it!
+
 
