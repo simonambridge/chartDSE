@@ -278,18 +278,14 @@ $ mkdir d3
 
 Download the d3js.zip zip file to the d3 dir created above.
 
-Edit your html file to reflect the new location of d3js e.g.: 
-<pre>
-<script src="./d3/d3.js"></script>
-</pre>
+In your chart HTML file
+Replace <script src="http://d3js.org/d3.v2.js"></script>
+with    <script src="./d3/d3.js"></script>
 
-That's it!
-
-
-# More
-You can install both d3 and jquery locally to remove the dependency on an internet connection.
 
 ##jquery
+
+You can also install jquery locally to remove the dependency on an internet connection.
 
 $ npm install jqueryui
 chartdse@0.0.0 /u02/dev/dse_dev/chartdse
@@ -306,9 +302,6 @@ with  <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.
 Replace <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
 with    <script type="text/javascript" src="./node_modules/jqueryui/jquery-ui.min.js"></script>
 
-##d3
-Replace <script src="http://d3js.org/d3.v2.js"></script>
-with    <script src="./d3/d3.js"></script>
 
 ##Copy files to static directory
 
