@@ -2,9 +2,12 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <head>
 <title>D3.js Dashboard Introduction</title>
-<script src="http://d3js.org/d3.v2.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+//<script src="http://d3js.org/d3.v2.js"></script>
+//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+<script src="d3.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
 <script>
 
   function getMaxObjectValue(this_array, element) {
@@ -26,7 +29,9 @@
     return values[0];
   }
 
-    console.log("Starting SimpleChart...");
+// =======================================================================
+
+  console.log("Starting SimpleChart...");
 
   var data = [];
   //d3.json('http://127.0.0.1:3000/list', function(data) {
@@ -59,7 +64,7 @@
   // parse UTC dates to convert e.g. 2016-10-21T08:56:59.921Z to Fri Oct 21 2016 08:56:59 GMT+0000
   for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
     data[i].time = parseUTC.parse(data[i].time);
-    console.log("data["+i+"].time = " + data[i].time);
+    //console.log("data["+i+"].time = " + data[i].time);
   }
 
   // sort the data by date ascending
@@ -69,14 +74,14 @@
     }
   );
 
-  for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
-    console.log("Date = ",data[i].time);
-  }
+//  for (var i = 0; i < dataRecCount; i++) {                     //Loop through array
+//    console.log("Date = ",data[i].time);
+//  }
 
   // these are graph size settings
   var width = 300
-  var height = 300;
-  var margin = {top: 30, right: 10, bottom: 40, left: 60};
+  var height = 400;
+  var margin = {top: 30, right: 10, bottom: 120, left: 60};
   var width = width - margin.left - margin.right;
   var height = height - margin.top - margin.bottom;     
 
@@ -114,8 +119,8 @@
 
   var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom")
-        .tickFormat(d3.time.format("%M"));
+        .orient("bottom").ticks(10)
+        .tickFormat(d3.time.format("%Y-%m-%d-%H-%M-%S"));
 
   vis.append("g")
         .attr("class", "axis")
@@ -124,13 +129,18 @@
   vis.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+      .selectAll("text")	
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", "rotate(-65)");
 
   //add the axes labels
   vis.append("text")
         .attr("class", "axis-label")
         .attr("text-anchor", "end")
-        .attr("x", 20)
+        .attr("x", -30)
         .attr("y", height + 34)
         .text('Date');
 

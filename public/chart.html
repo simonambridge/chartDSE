@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
     <title>D3 Test</title>
-  <script src="https://d3js.org/d3.v4.js"></script>
+//<script src="http://d3js.org/d3.v2.js"></script>
+<script src="d3.js"></script>
   <style type="text/css">
     div.bar {
         display: inline-block;
@@ -42,9 +43,11 @@
   </script>
   <form>
    <!   <input type="button" value="Open CQL Window"  onclick="getRecords(); return false;"/> 
-    <input type="button" value="Compaction History" onclick="window.open('http://localhost:3000/compaction')">
-    <input type="button" value="Spark Sensor Data" onclick="window.open('http://localhost:3000/sensordata')">
-    <input type="button" value="Open Another Window" onclick="window.open('http://localhost:3000/hello.html')">
+    <input type="button" value="ReST: Compaction History" onclick="window.open('http://localhost:3000/compaction')">
+    <input type="button" value="ReST: Sensor Data" onclick="window.open('http://localhost:3000/sensordata')">
+    <input type="button" value="Simple Chart: Sensor Data" onclick="window.open('http://localhost:3000/simplechart.html')">
+    <input type="button" value="Multi Chart: Window" onclick="window.open('http://localhost:3000/multichart.html')">
+   <input type="button" value="Open Another Window" onclick="window.open('http://localhost:3000/hello.html')">
   </form>
  </body>
  </html>     

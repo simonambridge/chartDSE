@@ -258,3 +258,47 @@ This takes the sensor data in the sparksensordata.sensordata table and displays 
 ![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
 
 
+# More
+You can install both d3 and jquery locally to remove the dependency on an internet connection.
+
+##jquery
+
+$ npm install jqueryui
+chartdse@0.0.0 /u02/dev/dse_dev/chartdse
+└── jqueryui@1.11.1 
+
+$ npm install jquery
+chartdse@0.0.0 /u02/dev/dse_dev/chartdse
+└── jquery@3.1.1 
+
+In your chart HTML file:
+Replace <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+with  <script type="text/javascript" src="./node_modules/jquery/dist/jquery.min.js"></script>
+
+Replace <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+with    <script type="text/javascript" src="./node_modules/jqueryui/jquery-ui.min.js"></script>
+
+##d3
+Replace <script src="http://d3js.org/d3.v2.js"></script>
+with    <script src="./d3/d3.js"></script>
+
+##Copy files to static directory
+
+$ cp node_modules/jquery/dist/jquery.min.js public
+$ cp node_modules/jqueryui/jquery-ui.min.js public
+$ cp d3/d3.js public
+
+Your HTML file header should now look like this:
+
+//<script src="http://d3js.org/d3.v2.js"></script>
+//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+<script src="d3.js"></script>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery-ui.min.js"></script>
+
+
+
+
+
+
