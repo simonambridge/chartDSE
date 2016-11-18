@@ -2,10 +2,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <head>
 <title>D3.js Dashboard Introduction</title>
-//<script src="http://d3js.org/d3.v2.js"></script>
-//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-<script src="d3.js"></script>
+<script src="d3.v3.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="jquery-ui.min.js"></script>
 <script>
@@ -42,7 +39,7 @@ function buildLineChart(data, title, element, width, height, xaxislabel, yaxisla
     this_array.splice(0,1);
 
     // define graph size parameters
-    var margin = {top: 30, right: 20, bottom: 40, left: 60}, width = width - margin.left - margin.right, height = height - margin.top - margin.bottom;
+    var margin = {top: 30, right: 20, bottom: 120, left: 60}, width = width - margin.left - margin.right, height = height - margin.top - margin.bottom;
     //color scale for multiple lines
     var colorscale = d3.scale.category10();
     var minDate = getDate(this_array[0]),
@@ -98,7 +95,7 @@ function buildLineChart(data, title, element, width, height, xaxislabel, yaxisla
     vis.append("text")
         .attr("class", "axis-label")
         .attr("text-anchor", "end")
-        .attr("x", 20)
+        .attr("x", -20)
         .attr("y", height + 34)
         .text(xaxislabel);
 

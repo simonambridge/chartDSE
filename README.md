@@ -276,11 +276,17 @@ $ cd <my project directory>
 $ mkdir d3
 </pre>
 
-Download the d3js.zip zip file to the d3 dir created above.
+Download the entire d3 zip file from https://github.com/mbostock/d3/releases and unzip in to the d3 directory created above, or copy just the main d3 v3 js from here http://d3js.org/d3.v3.js to the d3 dir created above.
 
 In your chart HTML file
-Replace '''<script src="http://d3js.org/d3.v2.js"></script>'''
-with    '''<script src="d3.js"></script>'''
+Replace 
+<pre>
+<script src="http://d3js.org/d3.v2.js"></script>
+</pre>
+with    
+<pre>
+<script src="d3.v3.js"></script>
+</pre>
 
 
 ##jquery
@@ -296,29 +302,42 @@ chartdse@0.0.0 /u02/dev/dse_dev/chartdse
 └── jquery@3.1.1 
 
 In your chart HTML file:
-Replace '''<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>'''
-with  '''<script type="text/javascript" src="jquery.min.js"></script>'''
+Replace 
+<pre>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<pre>
+with  
+<pre><script type="text/javascript" src="jquery.min.js"></script>
+</pre>
 
-Replace '''<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>'''
-with    '''<script type="text/javascript" src="jquery-ui.min.js"></script>'''
+Replace 
+<pre>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+</pre>
+with    
+<pre><script type="text/javascript" src="jquery-ui.min.js"></script>
+</pre>
 
 
 ##Copy files to static directory
 
 $ cp node_modules/jquery/dist/jquery.min.js public
 $ cp node_modules/jqueryui/jquery-ui.min.js public
-$ cp d3/d3.js public
+$ cp d3/d3.v3.js public
 
-Your HTML file header should now look like this:
+Your HTML file header was like this:
 
-'''
-//<script src="http://d3js.org/d3.v2.js"></script>
-//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-//<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-<script src="d3.js"></script>
+<pre>
+<script src="http://d3js.org/d3.v2.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+</pre>
+Now like this:
+<pre>
+<script src="d3.v3.js"></script>
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="jquery-ui.min.js"></script>
-'''
+</pre>
 
 
 
