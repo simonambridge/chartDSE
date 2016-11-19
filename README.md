@@ -157,6 +157,7 @@ This will overlay the repo files into the directory structure created by Express
 - If not then it will use index.jade  in /views and display the Express welcome message
 - ./public/chart.html - a simple d3 example chart and buttons to test the ReST interfaces for the two table queries
 - ./public/simplechart.html - a simple dashboard that displays time-series data from the custom table - from ideas at https://github.com/ESeufert/d3.js-dashboard-examples
+- ./public/multichart.html - a simple demo with multiple charts
 
 ##Example Cassandra Nodejs code:
 A simple example of using the Nodejs Cassandra connector:
@@ -291,7 +292,7 @@ with
 
 ##jquery
 
-You can also install jquery locally to remove the dependency on an internet connection.
+You can install jquery locally to remove the dependency on an internet connection.
 
 $ npm install jqueryui
 chartdse@0.0.0 /u02/dev/dse_dev/chartdse
@@ -320,10 +321,12 @@ with
 
 
 ##Copy files to static directory
-
+Copy these files from their downloads into the public directory so that we can serve them locally:
+<pre>
 $ cp node_modules/jquery/dist/jquery.min.js public
 $ cp node_modules/jqueryui/jquery-ui.min.js public
 $ cp d3/d3.v3.js public
+</pre>
 
 Your HTML file header was like this:
 
