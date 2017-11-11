@@ -190,23 +190,23 @@ select keyspace_name, columnfamily_name, compacted_at, bytes_in, bytes_out from 
 </pre>
 
 The second table looks like this:
-<pre>
+```
 CREATE TABLE sparksensordata.sensordata (
     name text,
     time timestamp,
     value double,
     PRIMARY KEY ((name, time))
 )
-</pre>
+```
 And we use this query:
-<pre>
+```
 select time, value from sparksensordata.sensordata
-</pre>
+```
 <BR>
 
 # Test The ReST Interfaces
 The rest interfaces are served from routes defined in app.js e.g.
-<pre>
+```
 app.get('/compaction', function(req, res) {
   var client = new cassandra.Client({ contactPoints: ['localhost'] , keyspace: 'system'});
   var queryString = 'select keyspace_name, columnfamily_name, compacted_at, bytes_in, bytes_out from system.compaction_history';
@@ -222,13 +222,13 @@ app.get('/compaction', function(req, res) {
     res.send(JSON.stringify(result.rows));
   });
 });
-</pre>
+```
 
 Now we know where everything is and what we're looking for, let's test it.
 If the server isn't currently running, go to your project directory and run this command to start the node server:
-<pre>
+```
 DEBUG=chartdse:* npm start           
-</pre>
+```
 
 ## Compaction History
 Test the system.compaction_history interface - json data is returned:
@@ -254,20 +254,24 @@ These are HTML pages that call the ReST interfaces and contain scripts to build 
 This contains a simple demo to build a bar chart, plus links to the ReST interfaces for the two tables. There is also a button showing how to link to another static HTML page.
 <BR>
 <BR>
-![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/chart_html.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/simonambridge/chartDSE/master/chart_html.png"/>
+</p>
 
 ## Time Series Data
 This takes the sensor data in the sparksensordata.sensordata table and displays it in a time series line graph.
 <BR>
 <BR>
-![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/simonambridge/chartDSE/master/simplechart_html.png"/>
+</p>
 
 #Installing d3js Locally
 By default the d3 scripts are downloaded at runtime using a link at the top of the html page that will run your javascript (for example in simplechart.html) e.g.:
 
-<pre>
-'''<script src="http://d3js.org/d3.v2.js"></script>'''
-</pre>
+'''
+<script src="http://d3js.org/d3.v2.js"></script>
+'''
 
 If you do not want to be dependent on an internet connection in order to run your code you can download d3 and use it locally.
 
@@ -276,61 +280,64 @@ Follow these steps:
 Go to the d3 site at http://d3js.org 
 Create a directory in your project directory (or centrally if you want to share between projects).
 
-<pre>
+```
 $ cd <my project directory>
 $ mkdir d3
-</pre>
+```
 
 Download the entire d3 zip file from https://github.com/mbostock/d3/releases and unzip in to the d3 directory created above, or copy just the main d3 v3 js from here http://d3js.org/d3.v3.js to the d3 dir created above.
 
 In your chart HTML file
 Replace 
-<pre>
+```
 <script src="http://d3js.org/d3.v2.js"></script>
-</pre>
+```
 with    
-<pre>
+```
 <script src="d3.v3.js"></script>
-</pre>
+```
 
 
 ## jquery
 
 You can install jquery locally to remove the dependency on an internet connection.
-
+```
 $ npm install jqueryui
 chartdse@0.0.0 /u02/dev/dse_dev/chartdse
 └── jqueryui@1.11.1 
-
+```
+```
 $ npm install jquery
 chartdse@0.0.0 /u02/dev/dse_dev/chartdse
 └── jquery@3.1.1 
-
+```
 In your chart HTML file:
 Replace 
-<pre>
+```
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<pre>
+```
 with  
-<pre><script type="text/javascript" src="jquery.min.js"></script>
-</pre>
+```
+<script type="text/javascript" src="jquery.min.js"></script>
+```
 
 Replace 
-<pre>
+```
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-</pre>
+```
 with    
-<pre><script type="text/javascript" src="jquery-ui.min.js"></script>
-</pre>
+```
+<script type="text/javascript" src="jquery-ui.min.js"></script>
+```
 
 
 ## Copy files to static directory
 Copy these files from their downloads into the public directory so that we can serve them locally:
-<pre>
+```
 $ cp node_modules/jquery/dist/jquery.min.js public
 $ cp node_modules/jqueryui/jquery-ui.min.js public
 $ cp d3/d3.v3.js public
-</pre>
+```
 
 Your HTML file header was like this:
 
