@@ -234,13 +234,17 @@ DEBUG=chartdse:* npm start
 Test the system.compaction_history interface - json data is returned:
 <BR>
 <BR>
-![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/simonambridge/chartDSE/master/compaction_history.png"/>
+</p>
 
 ## Sensor Data
 Test the custom sparksensordata.sensordata interface - json data is returned:
 <BR>
 <BR>
-![alt text] (https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/simonambridge/chartDSE/master/sensordata.png"/>
+</p>
 <BR>
 
 # Test The Chart Pages
